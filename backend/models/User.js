@@ -1,0 +1,1 @@
+//Schema for job posters & seekers
