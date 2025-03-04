@@ -10,8 +10,12 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(express.json());
+
 app.use(cors());
+
+// Apply express.json() only to specific routes
+app.use('/api/auth', express.json());
+app.use('/api/jobs', express.json());
 
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));

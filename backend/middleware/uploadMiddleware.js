@@ -2,7 +2,7 @@
 
 const multer = require('multer');
 const path = require('path');
-
+console.log('uploadMiddleware');
 // Configure storage for file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -21,3 +21,4 @@ const fileFilter = function (req, file, cb) {
 const upload = multer({ storage, fileFilter });
 
 module.exports = upload;
+console.log('uploadMiddleware ended');

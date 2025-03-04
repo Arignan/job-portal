@@ -7,14 +7,12 @@ const authMiddleware = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 
 // Use upload.fields for handling multiple file uploads (resume and cover letter)
+// Apply upload middleware to the route
 router.post(
-  '/',
-  authMiddleware,
-  upload.fields([
-    { name: 'resume', maxCount: 1 },
-    { name: 'coverLetter', maxCount: 1 }
-  ]),
-  appController.createApplication
+'/',
+upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'coverLetter', maxCount: 1 }]), // <-- upload.fields() FIRST!
+ authMiddleware,
+appController.createApplication
 );
 
 router.get('/job/:jobId', authMiddleware, appController.getApplicationsByJob);
